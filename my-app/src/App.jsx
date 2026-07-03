@@ -9,7 +9,7 @@ function App() {
     const newNote = {
       id: Date.now(),
       text: newNoteText,
-      date: new Date().toLocaleDateString(),
+      date: new Date(),
     };
 
     setNotes([...notes, newNote]);

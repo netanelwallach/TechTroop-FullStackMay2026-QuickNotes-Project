@@ -16,3 +16,11 @@
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
+
+h6 {
+  margin: 5px;
+}
+
+p {
+  padding: 10px;
+}
