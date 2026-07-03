@@ -2,7 +2,7 @@
   background-color: #ffef96; /* Classic post-it yellow */
   color: #333333;
   padding: 25px;
-  min-height: 200px;
+  min-height: 100px;
   font-family: "Courier New", Courier, monospace; /* Classic typed look */
 
   /* Soft, realistic shadow mimicking paper lifting from the board */

@@ -1,12 +1,21 @@
 import { useState } from "react";
 
-function NewNote({ Notes }) {
+function NewNote({ onAddNote }) {
   const rows = 15;
   const columns = 50;
+  const [note, setNote] = useState("");
 
-  const addClickHandle = () => {
-    Notes.push();
+  const updateNoteText = (event) => {
+    setNote(event.target.value);
   };
+
+  const addClickHandle = (event) => {
+    event.preventDefault();
+    if (note.trim() === "") return;
+    onAddNote(note);
+    setNote("");
+  };
+
   return (
     <form>
       <textarea
@@ -15,9 +24,11 @@ function NewNote({ Notes }) {
         placeholder="Your note..."
         rows={rows}
         cols={columns}
+        value={note}
+        onChange={updateNoteText}
       ></textarea>
       <div>
-        <button>Add</button>
+        <button onClick={addClickHandle}>Add</button>
       </div>
     </form>
   );

@@ -1,14 +1,22 @@
+import { useState } from "react";
 import NewNote from "./components/NewNote/NewNote";
 import NotesGrid from "./components/NotesGrid/NotesGrid";
 
 function App() {
-  const notes = [
-    { id: 1, text: "לקנות חלב", date: "03/07/2026" },
-    { id: 2, text: "ללמוד React", date: "03/07/2026" },
-  ];
+  const [notes, setNotes] = useState([]);
+
+  const handleAddNewNote = (newNoteText) => {
+    const newNote = {
+      id: Date.now(),
+      text: newNoteText,
+      date: new Date().toLocaleDateString(),
+    };
+
+    setNotes([...notes, newNote]);
+  };
   return (
     <>
-      <NewNote Notes={notes} />
+      <NewNote onAddNote={handleAddNewNote} />
       <NotesGrid Notes={notes} />
     </>
   );
