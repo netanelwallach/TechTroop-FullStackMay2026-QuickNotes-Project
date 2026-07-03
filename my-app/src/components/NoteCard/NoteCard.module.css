@@ -1,0 +1,18 @@
+.note-card {
+  background-color: #ffef96; /* Classic post-it yellow */
+  color: #333333;
+  padding: 25px;
+  min-height: 200px;
+  font-family: "Courier New", Courier, monospace; /* Classic typed look */
+
+  /* Soft, realistic shadow mimicking paper lifting from the board */
+  box-shadow:
+    2px 2px 2px rgba(0, 0, 0, 0.1),
+    0px 10px 20px rgba(0, 0, 0, 0.15);
+
+  /* Subtle tilt effect for realism */
+  transform: rotate(-1deg);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
