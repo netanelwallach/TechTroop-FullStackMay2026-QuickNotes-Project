@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import styles from "./NewNote.module.css";
 
 function NewNote({ onAddNote }) {
-  const rows = 15;
-  const columns = 50;
+  // const rows = 15;
+  // const columns = 50;
   const [note, setNote] = useState("");
   const [title, setTitle] = useState("");
 
@@ -23,6 +23,15 @@ function NewNote({ onAddNote }) {
     setTitle("");
   };
 
+  const textareaRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [note]);
+
   return (
     <form>
       <div className={styles["note-container"]}>
@@ -38,10 +47,12 @@ function NewNote({ onAddNote }) {
           name="new-note"
           id="new-note"
           placeholder="Your note..."
-          rows={rows}
-          cols={columns}
+          rows={3}
+          // cols={columns}
+          ref={textareaRef}
           value={note}
           onChange={updateNoteText}
+          className={styles["textarea-auto"]}
         ></textarea>
       </div>
       <div>

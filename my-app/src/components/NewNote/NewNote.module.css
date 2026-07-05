@@ -5,3 +5,11 @@
   margin: 0% 15% 0% 15%;
   box-shadow: 2px 2px 2px 1px #333333;
 }
+
+.textarea-auto {
+  resize: none;
+  overflow: hidden;
+  min-height: 120px; /* Keeps your original starting height layout */
+  width: 100%; /* Ensures full container width alignment */
+  display: block; /* Eliminates inline element white-space issues */
+}
