@@ -1,0 +1,23 @@
+/* שכבת הרקע שמכסה את כל המסך מאחורי הפתקית הפתוחה */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000a6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+:global(.ReactModal__Content) {
+  outline: none;
+  width: 100%;
+  max-width: 450px; /* רוחב מקסימלי מעולה */
+  aspect-ratio: 1 / 1; /* הופך גם את המודאל לריבוע מושלם ומרשים! */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}

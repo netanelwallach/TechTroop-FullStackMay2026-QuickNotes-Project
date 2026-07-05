@@ -1,5 +1,8 @@
 import Modal from "react-modal";
+import modalStyles from "./NoteModal.module.css";
 import cardStyles from "../NoteCard/NoteCard.module.css";
+
+Modal.setAppElement("#root");
 
 function NoteModal({ note, title, date, isOpen, onClose }) {
   const getOrdinalSuffix = (day) => {
@@ -47,6 +50,7 @@ function NoteModal({ note, title, date, isOpen, onClose }) {
       isOpen={isOpen}
       onRequestClose={onClose}
       className={cardStyles["note-card"]}
+      overlayClassName={modalStyles["modal-overlay"]}
     >
       <div className={cardStyles["note-header"]}>
         <span className={cardStyles["note-date"]}>{formattedDate}</span>
