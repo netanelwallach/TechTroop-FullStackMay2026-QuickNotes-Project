@@ -1,58 +1,75 @@
 .note-card {
-  background-color: #ffef96; /* Classic post-it yellow */
+  background-color: #ffef96; /* צהוב פתקית קלאסי */
   color: #333333;
-  padding: 25px;
+  padding: 14px; /* פדינג מצומצם שמתאים למידה הקטנה */
 
-  aspect-ratio: 1 / 1; /* מכריח את הבלוק להיות ריבוע מושלם */
-  min-height: 200px; /* מבטיח שהוא לא יתכווץ מדי */
+  /* הגדרת מידות קומפקטיות ואמיתיות של Sticky Note */
+  width: 100%;
+  max-width: 180px;
+  aspect-ratio: 1 / 1; /* מכריח את הפתקית להיות ריבוע מושלם */
   display: flex;
-  flex-direction: column; /* מאפשר לנו לסדר את התוכן פנימית */
+  flex-direction: column;
+  box-sizing: border-box;
 
-  font-family: "Courier New", Courier, monospace; /* Classic typed look */
+  font-family: "Courier New", Courier, monospace; /* מראה מכונת כתיבה */
 
-  /* Soft, realistic shadow mimicking paper lifting from the board */
+  /* צל ריאליסטי ועדין המדמה נייר שמתרומם מהלוח */
   box-shadow:
-    2px 2px 2px #0000001a,
-    0px 10px 20px #00000026;
+    2px 2px 2px rgba(0, 0, 0, 0.1),
+    0px 8px 16px rgba(0, 0, 0, 0.12);
 
-  /* Subtle tilt effect for realism */
+  /* הטיה קלה למראה טבעי */
   transform: rotate(-1deg);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
-}
-
-h6 {
-  margin: 5px;
-}
-
-.note-card p {
-  padding: 10px 0;
-  margin: 0;
-  overflow-y: auto; /* גלילה פנימית אם הטקסט ארוך מהריבוע */
-  flex-grow: 1; /* תופס את שאר המקום הפנוי בריבוע */
-  white-space: pre-wrap; /* שומר על ירידות שורה */
+  cursor: pointer;
 }
 
 .note-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px;
-  border-radius: 4px;
+  margin-bottom: 4px;
+}
+
+.note-date {
+  font-size: 11px; /* פונט קטן לתאריך שלא יתפוס מקום יקר */
+  opacity: 0.7;
 }
 
 .delete-btn {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem; /* גודל מותאם ל-X המחיקה */
   font-weight: bold;
   color: #721c24;
   cursor: pointer;
   line-height: 1;
-  padding: 0 5px;
+  padding: 0 4px;
 }
 
 .delete-btn:hover {
   color: #f00;
+}
+
+/* כותרת הפתקית (אם קיימת) */
+.note-card h3 {
+  margin: 4px 0 2px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* גוף הפתקית - שומר על הטאבים, הרווחים וירידות השורה */
+.note-card p {
+  padding: 4px 0 0 0;
+  margin: 0;
+  font-size: 13px; /* פונט מעט קטן יותר שמאפשר לטקסט לנשום בריבוע קטן */
+  overflow-y: auto; /* גלילה פנימית עדינה אם הטקסט ארוך מהריבוע */
+  flex-grow: 1;
+
+  /* שמירה על פורמט הקלדה (רווחים, טאבים ושורות חדשות) */
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.3;
 }
