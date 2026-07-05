@@ -2,8 +2,6 @@ import { useState, useRef, useLayoutEffect } from "react";
 import styles from "./NewNote.module.css";
 
 function NewNote({ onAddNote }) {
-  // const rows = 15;
-  // const columns = 50;
   const [note, setNote] = useState("");
   const [title, setTitle] = useState("");
 
@@ -33,31 +31,31 @@ function NewNote({ onAddNote }) {
   }, [note]);
 
   return (
-    <form>
-      <div className={styles["note-container"]}>
-        <input
-          type="text"
-          name="new-note-title"
-          id="new-note-title"
-          placeholder="Title"
-          value={title}
-          onChange={updateNoteTitle}
-        />
-        <textarea
-          name="new-note"
-          id="new-note"
-          placeholder="Your note..."
-          rows={3}
-          // cols={columns}
-          ref={textareaRef}
-          value={note}
-          onChange={updateNoteText}
-          className={styles["textarea-auto"]}
-        ></textarea>
-      </div>
-      <div>
-        <button onClick={addClickHandle}>Add</button>
-      </div>
+    <form className={styles["new-note-form"]}>
+      <input
+        type="text"
+        name="new-note-title"
+        id="new-note-title"
+        placeholder="Title"
+        value={title}
+        onChange={updateNoteTitle}
+        className={styles["note-input"]}
+      />
+
+      <textarea
+        name="new-note"
+        id="new-note"
+        placeholder="Your note..."
+        rows={3}
+        ref={textareaRef}
+        value={note}
+        onChange={updateNoteText}
+        className={styles["textarea-auto"]}
+      ></textarea>
+
+      <button onClick={addClickHandle} className={styles["add-btn"]}>
+        Add
+      </button>
     </form>
   );
 }
