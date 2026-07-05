@@ -1,7 +1,7 @@
 import NoteCard from "../NoteCard/NoteCard";
 import styles from "./NotesGrid.module.css";
 
-function NotesGrid({ Notes, deleteNote }) {
+function NotesGrid({ Notes, onDeleteNote, onActiveNote }) {
   return (
     <div className={styles["grid-container"]}>
       {Notes.map((n) => (
@@ -11,7 +11,8 @@ function NotesGrid({ Notes, deleteNote }) {
           note={n.text}
           title={n.title}
           date={n.date}
-          deleteNote={deleteNote}
+          onDeleteNote={onDeleteNote}
+          onActiveNote={onActiveNote}
         ></NoteCard>
       ))}
     </div>

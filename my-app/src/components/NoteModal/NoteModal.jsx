@@ -1,7 +1,7 @@
-import styles from "./NoteCard.module.css";
-import NoteModal from "../NoteModal/NoteModal";
+import Modal from "react-modal";
+import cardStyles from "../NoteCard/NoteCard.module.css";
 
-function NoteCard({ id, note, title, date, onDeleteNote, onActiveNote }) {
+function NoteModal({ note, title, date, isOpen, onClose }) {
   const getOrdinalSuffix = (day) => {
     if (day > 3 && day < 21) return "th";
     switch (day % 10) {
@@ -35,34 +35,34 @@ function NoteCard({ id, note, title, date, onDeleteNote, onActiveNote }) {
   // 4. מחברים הכל למחרוזת אחת יפה
   const formattedDate = `${month} ${dayNum}${suffix} ${time}`;
 
-  const handleDeleteNote = (event) => {
+  const handleDeleteNote = () => {
     event.stopPropagation();
     if (confirm("Are you sure you want to delete your note?")) {
-      onDeleteNote(id);
+      deleteNote(id);
     }
   };
 
-  const handleActiveNote = () => {
-    onActiveNote(id);
-  };
-
   return (
-    <div className={styles["note-card"]} onClick={handleActiveNote}>
-      <div className={styles["note-header"]}>
-        <span className={styles["note-date"]}>{formattedDate}</span>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onClose}
+      className={cardStyles["note-card"]}
+    >
+      <div className={cardStyles["note-header"]}>
+        <span className={cardStyles["note-date"]}>{formattedDate}</span>
         <button
           type="button"
-          className={styles["delete-btn"]}
-          aria-label="Delete note"
-          onClick={handleDeleteNote}
+          className={cardStyles["delete-btn"]}
+          aria-label="Close note"
+          onClick={onClose}
         >
           &times;
         </button>
       </div>
       <h3>{title}</h3>
       <p>{note}</p>
-    </div>
+    </Modal>
   );
 }
 
-export default NoteCard;
+export default NoteModal;
