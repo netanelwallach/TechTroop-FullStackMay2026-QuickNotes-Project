@@ -1,6 +1,6 @@
 import styles from "./NoteCard.module.css";
 
-function NoteCard({ note, date }) {
+function NoteCard({ note, id, date, deleteNote }) {
   const getOrdinalSuffix = (day) => {
     if (day > 3 && day < 21) return "th";
     switch (day % 10) {
@@ -34,9 +34,25 @@ function NoteCard({ note, date }) {
   // 4. מחברים הכל למחרוזת אחת יפה
   const formattedDate = `${month} ${dayNum}${suffix} ${time}`;
 
+  const handleDeleteNote = () => {
+    if (confirm("Are you sure you want to delete your note?")) {
+      deleteNote(id);
+    }
+  };
+
   return (
     <div className={styles["note-card"]}>
-      <span className={styles["note-date"]}>{formattedDate}</span>
+      <div className={styles["note-header"]}>
+        <span className={styles["note-date"]}>{formattedDate}</span>
+        <button
+          type="button"
+          className={styles["delete-btn"]}
+          aria-label="Delete note"
+          onClick={handleDeleteNote}
+        >
+          &times;
+        </button>
+      </div>
       <p>{note}</p>
     </div>
   );

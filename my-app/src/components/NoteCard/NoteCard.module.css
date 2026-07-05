@@ -24,3 +24,26 @@ h6 {
 p {
   padding: 10px;
 }
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #721c24;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 5px;
+}
+
+.delete-btn:hover {
+  color: #f00;
+}

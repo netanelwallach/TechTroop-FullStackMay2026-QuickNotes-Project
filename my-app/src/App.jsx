@@ -14,10 +14,16 @@ function App() {
 
     setNotes([...notes, newNote]);
   };
+
+  const handleDeleteNote = (noteId) => {
+    const updatedNotes = notes.filter((n) => n.id !== noteId);
+
+    setNotes(updatedNotes);
+  };
   return (
     <>
       <NewNote onAddNote={handleAddNewNote} />
-      <NotesGrid Notes={notes} />
+      <NotesGrid Notes={notes} deleteNote={handleDeleteNote} />
     </>
   );
 }
