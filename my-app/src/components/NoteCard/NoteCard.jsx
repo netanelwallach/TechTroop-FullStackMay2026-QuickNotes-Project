@@ -1,6 +1,6 @@
 import styles from "./NoteCard.module.css";
 
-function NoteCard({ note, id, date, deleteNote }) {
+function NoteCard({ id, note, title, date, deleteNote }) {
   const getOrdinalSuffix = (day) => {
     if (day > 3 && day < 21) return "th";
     switch (day % 10) {
@@ -53,6 +53,7 @@ function NoteCard({ note, id, date, deleteNote }) {
           &times;
         </button>
       </div>
+      <h3>{title}</h3>
       <p>{note}</p>
     </div>
   );

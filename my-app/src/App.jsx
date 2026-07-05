@@ -5,9 +5,10 @@ import NotesGrid from "./components/NotesGrid/NotesGrid";
 function App() {
   const [notes, setNotes] = useState([]);
 
-  const handleAddNewNote = (newNoteText) => {
+  const handleAddNewNote = (newNoteTitle, newNoteText) => {
     const newNote = {
       id: Date.now(),
+      title: newNoteTitle,
       text: newNoteText,
       date: new Date(),
     };

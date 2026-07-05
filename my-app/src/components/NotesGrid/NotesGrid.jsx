@@ -7,8 +7,9 @@ function NotesGrid({ Notes, deleteNote }) {
       {Notes.map((n) => (
         <NoteCard
           key={n.id}
-          note={n.text}
           id={n.id}
+          note={n.text}
+          title={n.title}
           date={n.date}
           deleteNote={deleteNote}
         ></NoteCard>

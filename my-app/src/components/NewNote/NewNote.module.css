@@ -1,0 +1,7 @@
+.note-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0% 15% 0% 15%;
+  box-shadow: 2px 2px 2px 1px #333333;
+}
