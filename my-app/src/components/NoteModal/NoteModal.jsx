@@ -29,9 +29,9 @@ function NoteModal({
       overlayClassName={modalStyles["modal-overlay"]}
     >
       <NewNote
+        onSubmit={onUpdateNote}
         initialTitle={title}
         initialText={note}
-        onSubmit={onUpdateNote}
       />
     </Modal>
   );
