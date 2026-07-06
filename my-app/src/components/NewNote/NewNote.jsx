@@ -16,7 +16,11 @@ function NewNote({ onSubmit, initialTitle, initialText }) {
   const submitClickHandle = (event) => {
     event.preventDefault();
     if (note.trim() === "") return;
-    onSubmit(title, note);
+
+    if (onSubmit) {
+      onSubmit(title, note);
+    }
+
     if (initialText === null || initialText === undefined) {
       setNote("");
       setTitle("");
