@@ -1,9 +1,9 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import styles from "./NewNote.module.css";
 
-function NewNote({ onAddNote }) {
-  const [note, setNote] = useState("");
-  const [title, setTitle] = useState("");
+function NewNote({ onSubmit, initialTitle, initialText }) {
+  const [note, setNote] = useState(initialText || "");
+  const [title, setTitle] = useState(initialTitle || "");
 
   const updateNoteText = (event) => {
     setNote(event.target.value);
@@ -13,12 +13,14 @@ function NewNote({ onAddNote }) {
     setTitle(event.target.value);
   };
 
-  const addClickHandle = (event) => {
+  const submitClickHandle = (event) => {
     event.preventDefault();
     if (note.trim() === "") return;
-    onAddNote(title, note);
-    setNote("");
-    setTitle("");
+    onSubmit(title, note);
+    if (initialText === null || initialText === undefined) {
+      setNote("");
+      setTitle("");
+    }
   };
 
   const textareaRef = useRef(null);
@@ -53,8 +55,9 @@ function NewNote({ onAddNote }) {
         className={styles["textarea-auto"]}
       ></textarea>
 
-      <button onClick={addClickHandle} className={styles["add-btn"]}>
-        Add
+      <button onClick={submitClickHandle} className={styles["add-btn"]}>
+        {/* {initialText !== null && initialText !== undefined ? "Update" : "Add"} */}
+        {initialText ? "Update" : "Add"}
       </button>
     </form>
   );

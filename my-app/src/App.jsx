@@ -12,7 +12,8 @@ function App() {
       id: Date.now(),
       title: newNoteTitle,
       text: newNoteText,
-      date: new Date(),
+      createDate: new Date(),
+      updateDate: null,
     };
 
     setNotes([...notes, newNote]);
@@ -33,9 +34,30 @@ function App() {
     setActiveNote(null);
   };
 
+  const handleUpdateNote = (noteId, updatedTitle, updatedText) => {
+    const updatedNotes = notes.map((note) => {
+      if (note.id === noteId) {
+        return {
+          ...note,
+          title: updatedTitle,
+          text: updatedText,
+          updateDate: new Date(),
+        };
+      }
+      return note;
+    });
+
+    setNotes(updatedNotes);
+  };
+
+  const handleUpdateActiveNote = (updatedTitle, updatedText) => {
+    handleUpdateNote(activeNote.id, updatedTitle, updatedText);
+    handleCloseNoteModal();
+  };
+
   return (
     <>
-      <NewNote onAddNote={handleAddNewNote} />
+      <NewNote onSubmit={handleAddNewNote} />
       <NotesGrid
         Notes={notes}
         onDeleteNote={handleDeleteNote}
@@ -43,11 +65,14 @@ function App() {
       />
       {activeNote ? (
         <NoteModal
-          isOpen={activeNote !== null}
+          // id={activeNote.id}
           title={activeNote.title}
           note={activeNote.text}
-          date={activeNote.date}
+          // createDate={activeNote.createDate}
+          // updateDate={activeNote.updateDate}
+          isOpen={activeNote !== null}
           onClose={handleCloseNoteModal}
+          onUpdateNote={handleUpdateActiveNote}
         />
       ) : null}
     </>
