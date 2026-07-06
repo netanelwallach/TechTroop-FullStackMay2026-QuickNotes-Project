@@ -28,7 +28,17 @@ function NoteCard({
 
   return (
     <div className={styles["note-card"]} onClick={handleActiveNote}>
-      <div className={styles["note-header"]}>
+      <button
+        type="button"
+        className={styles["delete-btn"]}
+        aria-label="Delete note"
+        onClick={handleDeleteNote}
+      >
+        &times;
+      </button>
+      <h3>{title}</h3>
+      <p>{note}</p>
+      <div className={styles["note-footer"]}>
         <span className={styles["note-date"]}>
           created: {formattedCreateDate}
         </span>
@@ -37,17 +47,7 @@ function NoteCard({
             updated: {formattedUpdateDate}
           </span>
         ) : null}
-        <button
-          type="button"
-          className={styles["delete-btn"]}
-          aria-label="Delete note"
-          onClick={handleDeleteNote}
-        >
-          &times;
-        </button>
       </div>
-      <h3>{title}</h3>
-      <p>{note}</p>
     </div>
   );
 
