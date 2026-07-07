@@ -4,7 +4,10 @@ import NotesGrid from "./components/NotesGrid/NotesGrid";
 import NoteModal from "./components/NoteModal/NoteModal";
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(() => {
+    const savedNotes = localStorage.getItem("quick_notes");
+    return savedNotes ? JSON.parse(savedNotes) : [];
+  });
   const [activeNote, setActiveNote] = useState(null);
 
   const handleAddNewNote = (newNoteTitle, newNoteText) => {
@@ -16,13 +19,16 @@ function App() {
       updateDate: null,
     };
 
-    setNotes([...notes, newNote]);
+    const updatedNotes = [...notes, newNote];
+    setNotes(updatedNotes);
+    localStorage.setItem("quick_notes", JSON.stringify(updatedNotes));
   };
 
   const handleDeleteNote = (noteId) => {
     const updatedNotes = notes.filter((n) => n.id !== noteId);
 
     setNotes(updatedNotes);
+    localStorage.setItem("quick_notes", JSON.stringify(updatedNotes));
   };
 
   const handleActiveNote = (noteId) => {
@@ -48,6 +54,7 @@ function App() {
     });
 
     setNotes(updatedNotes);
+    localStorage.setItem("quick_notes", JSON.stringify(updatedNotes));
   };
 
   const handleUpdateActiveNote = (updatedTitle, updatedText) => {
