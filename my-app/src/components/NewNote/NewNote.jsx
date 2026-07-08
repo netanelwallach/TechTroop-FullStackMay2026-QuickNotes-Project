@@ -41,7 +41,10 @@ function NewNote({ onSubmit, initialTitle, initialText, initialCategory }) {
   }, [note]);
 
   return (
-    <form className={styles["new-note-form"]}>
+    <form
+      className={styles["new-note-form"]}
+      style={{ backgroundColor: category }}
+    >
       <input
         type="text"
         name="new-note-title"
