@@ -1,5 +1,6 @@
 import styles from "./NoteCard.module.css";
-import NoteModal from "../NoteModal/NoteModal";
+// import NoteModal from "../NoteModal/NoteModal";
+// import { categories } from "../../constants/Categories";
 
 function NoteCard({
   id,
@@ -7,6 +8,7 @@ function NoteCard({
   title,
   createDate,
   updateDate,
+  category,
   onDeleteNote,
   onActiveNote,
   onUpdateNote,
@@ -27,7 +29,11 @@ function NoteCard({
   };
 
   return (
-    <div className={styles["note-card"]} onClick={handleActiveNote}>
+    <div
+      style={{ backgroundColor: category }}
+      className={styles["note-card"]}
+      onClick={handleActiveNote}
+    >
       <button
         type="button"
         className={styles["delete-btn"]}

@@ -8,6 +8,7 @@ Modal.setAppElement("#root");
 function NoteModal({
   note,
   title,
+  category,
   /*createDate,*/ isOpen,
   onClose,
   onUpdateNote,
@@ -32,6 +33,7 @@ function NoteModal({
         onSubmit={onUpdateNote}
         initialTitle={title}
         initialText={note}
+        initialCategory={category}
       />
     </Modal>
   );

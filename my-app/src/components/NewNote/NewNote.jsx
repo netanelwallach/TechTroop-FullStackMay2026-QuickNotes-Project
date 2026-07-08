@@ -1,9 +1,13 @@
 import { useState, useRef, useLayoutEffect } from "react";
 import styles from "./NewNote.module.css";
+import { categories } from "../../constants/Categories";
 
-function NewNote({ onSubmit, initialTitle, initialText }) {
+function NewNote({ onSubmit, initialTitle, initialText, initialCategory }) {
   const [note, setNote] = useState(initialText || "");
   const [title, setTitle] = useState(initialTitle || "");
+  const [category, setCategory] = useState(
+    initialCategory || categories.personal,
+  );
 
   const updateNoteText = (event) => {
     setNote(event.target.value);
@@ -18,7 +22,7 @@ function NewNote({ onSubmit, initialTitle, initialText }) {
     if (note.trim() === "") return;
 
     if (onSubmit) {
-      onSubmit(title, note);
+      onSubmit(title, note, category);
     }
 
     if (initialText === null || initialText === undefined) {
@@ -58,6 +62,21 @@ function NewNote({ onSubmit, initialTitle, initialText }) {
         onChange={updateNoteText}
         className={styles["textarea-auto"]}
       ></textarea>
+
+      <div className={styles["category-container"]}>
+        <select
+          id="note-category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className={styles["category-select"]}
+        >
+          {Object.keys(categories).map((key) => (
+            <option key={key} value={categories[key]}>
+              {key.charAt(0).toUpperCase() + key.slice(1)} Note
+            </option>
+          ))}
+        </select>
+      </div>
 
       <button onClick={submitClickHandle} className={styles["add-btn"]}>
         {/* {initialText !== null && initialText !== undefined ? "Update" : "Add"} */}

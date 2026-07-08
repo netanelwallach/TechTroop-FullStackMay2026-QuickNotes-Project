@@ -10,6 +10,7 @@ function NotesGrid({ Notes, onDeleteNote, onActiveNote, onUpdateNote }) {
           id={n.id}
           note={n.text}
           title={n.title}
+          category={n.category}
           createDate={n.createDate}
           updateDate={n.updateDate}
           onDeleteNote={onDeleteNote}

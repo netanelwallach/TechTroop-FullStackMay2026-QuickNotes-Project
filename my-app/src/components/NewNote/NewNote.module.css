@@ -60,3 +60,51 @@
 .add-btn:hover {
   background-color: #f5f5f5;
 }
+
+/* מיכל ה-select כדי לתת מרווח נכון מה-textarea ומהכפתור */
+.category-container {
+  width: 100%;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+/* עיצוב ה-Select עצמו */
+.category-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #333333;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  /* התאמה אישית של חץ הבחירה בדפדפנים מודרניים */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23666666' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 32px; /* שומר מקום לחץ */
+}
+
+/* אפקט פוקוס במעבר או בבחירה */
+.category-select:focus {
+  border-color: #666666;
+  box-shadow: 0 0 0 2px #0000000d;
+}
+
+/* עיצוב האופציות הפנימיות */
+.category-select option {
+  padding: 8px;
+  background-color: #ffffff;
+  color: #333333;
+}
