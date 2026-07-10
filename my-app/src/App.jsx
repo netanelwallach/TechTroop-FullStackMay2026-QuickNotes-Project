@@ -3,6 +3,7 @@ import NewNote from "./components/NewNote/NewNote";
 import NotesGrid from "./components/NotesGrid/NotesGrid";
 import NoteModal from "./components/NoteModal/NoteModal";
 import { categories } from "./constants/Categories";
+import FilterBar from "./components/FilterBar/FilterBar";
 
 function App() {
   const [notes, setNotes] = useState(() => {
@@ -10,6 +11,8 @@ function App() {
     return savedNotes ? JSON.parse(savedNotes) : [];
   });
   const [activeNote, setActiveNote] = useState(null);
+  const [searchText, setSearchText] = useState("");
+  const [filterCategory, setfilterCategory] = useState("");
 
   const handleAddNewNote = (newNoteTitle, newNoteText, newNoteCategory) => {
     const newNote = {
@@ -74,11 +77,48 @@ function App() {
     handleCloseNoteModal();
   };
 
+  const handleSearchText = (text) => {
+    setSearchText(text.toLowerCase());
+  };
+
+  const handleFilterCategory = (category) => {
+    setfilterCategory(category);
+  };
+
+  const searchNotes = () => {
+    let resultNotes = notes;
+    if (searchText !== "" && filterCategory !== "") {
+      resultNotes = notes.filter((n) => {
+        return (
+          (n.text.toLowerCase().includes(searchText.toLowerCase()) ||
+            n.title.toLowerCase().includes(searchText.toLowerCase())) &&
+          n.category === categories[filterCategory]
+        );
+      });
+    } else if (searchText !== "") {
+      resultNotes = notes.filter((n) => {
+        return (
+          n.text.toLowerCase().includes(searchText.toLowerCase()) ||
+          n.title.toLowerCase().includes(searchText.toLowerCase())
+        );
+      });
+    } else if (filterCategory !== "") {
+      resultNotes = notes.filter((n) => {
+        return n.category === categories[filterCategory];
+      });
+    }
+    return resultNotes;
+  };
+
   return (
     <>
+      <FilterBar
+        onSearchChange={handleSearchText}
+        onCategoryChange={handleFilterCategory}
+      />
       <NewNote onSubmit={handleAddNewNote} />
       <NotesGrid
-        Notes={notes}
+        Notes={searchNotes()}
         onDeleteNote={handleDeleteNote}
         onActiveNote={handleActiveNote}
       />

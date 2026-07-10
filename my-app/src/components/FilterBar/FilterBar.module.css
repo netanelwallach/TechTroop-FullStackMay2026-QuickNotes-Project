@@ -1,0 +1,101 @@
+.filter-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: 550px; /* תואם בדיוק לרוחב המקסימלי של ה-NewNote שלך */
+  margin: 30px auto 10px auto; /* מרכוז ומרווח נעים מהאלמנטים */
+  padding: 0 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-text-group {
+  flex: 1; /* גורם לחיפוש למלא את כל השטח הפנוי משמאל */
+  display: flex;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 16px;
+  border: 1px solid #00000014;
+  border-radius: 24px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #333333;
+  outline: none; /* מסיר את מסגרת הפוקוס הדיפולטיבית והמכוערת של הדפדפן */
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px #0000000a;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.search-input:focus {
+  border-color: #00000033;
+  box-shadow: 0 4px 12px #00000014;
+}
+
+.search-category-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* מעלימים את כפתור הרדיו הפיזי */
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* עיצוב הלייבלים כצ'יפים מעוגלים */
+.category-chip {
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: #ffffff;
+  border: 1px solid #00000014;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  box-shadow: 0 2px 6px #00000005;
+}
+
+.category-chip:hover {
+  background-color: #fafafa;
+  border-color: #00000024;
+}
+
+/* מצבי בחירה דינמיים לפי קטגוריות הפתקים */
+.radio-input:checked + :global(.personal-chip) {
+  background-color: #fff2cc; /* צבע פסטל פרסונל */
+  border-color: #e6d3a0;
+  color: #333333;
+  font-weight: 600;
+}
+
+.radio-input:checked + :global(.work-chip) {
+  background-color: #d0e1fd; /* צבע פסטל וורק */
+  border-color: #b3ccf5;
+  color: #333333;
+  font-weight: 600;
+}
+
+.radio-input:checked + :global(.ideas-chip) {
+  background-color: #d1fae5; /* צבע פסטל איידיס */
+  border-color: #a7f3d0;
+  color: #333333;
+  font-weight: 600;
+}
+
+.radio-input:checked + :global(.all-chip) {
+  background-color: #333333; /* כפתור All כהה וקונטרסטי */
+  border-color: #333333;
+  color: #ffffff;
+  font-weight: 600;
+}
